@@ -1,0 +1,109 @@
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.*;
+
+class Login_form1 extends JFrame implements ActionListener{
+	Container container=getContentPane();
+	JLabel name_label=new JLabel("Username");
+	JLabel pwd_label=new JLabel("Password");
+	JTextField username=new JTextField();
+	JPasswordField password=new JPasswordField();
+	JButton submit=new JButton("SUBMIT");
+	JButton reset=new JButton("RESET");
+	JCheckBox show_pwd=new JCheckBox("Show Password");
+	
+	Login_form1(){
+			
+			setLayoutManager();
+			setLocationAndSize();
+			addComponentsToContainer();
+			addActionEvent();
+				
+	}
+
+	public void setLayoutManager() {
+		
+			container.setLayout(null);
+	}
+		
+	public void addComponentsToContainer() {
+					
+			container.add(name_label);
+			container.add(pwd_label);
+			container.add(username);
+			container.add(password);
+			container.add(show_pwd);
+			container.add(submit);
+			container.add(reset);
+			
+	}
+	
+	public void setLocationAndSize() {
+		
+			name_label.setBounds(80,25,80,30);
+			username.setBounds(180,25,150,30);
+			pwd_label.setBounds(80,100,80,30);
+			password.setBounds(180,100,150,30);
+			show_pwd.setBounds(180,140,150,30);
+			submit.setBounds(100,200,90,30);
+			reset.setBounds(220,200,90,30);
+			
+	}
+	
+	public void addActionEvent() {
+		
+			submit.addActionListener(this);
+			reset.addActionListener(this);
+			show_pwd.addActionListener(this);
+			
+	}
+	
+@Override
+	public void actionPerformed(ActionEvent e) {
+			
+			 if(e.getSource()==submit) {
+				 	String userText;
+				 	String pwdText;
+				 	userText=username.getText();
+				 	pwdText=password.getText();
+				 	if(userText.equalsIgnoreCase("Yogita")&&pwdText.equalsIgnoreCase("1234")) {
+				 		JOptionPane.showMessageDialog(this,"Login Successful");
+				 	}
+				 	else {
+				 		JOptionPane.showMessageDialog(this, "Invalid Username or Password");
+				 	}
+			 }
+			 if(e.getSource()==reset) {
+				 username.setText("");
+				 password.setText("");
+			 }
+			 if(e.getSource()==show_pwd) {
+				 if(show_pwd.isSelected()) {
+					 password.setEchoChar((char)0);
+				 }
+				 else {
+					 password.setEchoChar('*');
+				 }
+			 }
+	}
+	
+}
+
+
+
+public class Login_form {
+	
+	public static void main(String[] args) {
+		
+			Login_form1 frame=new Login_form1();
+			frame.setTitle("Login Form");
+			frame.setBounds(10,10,600,600);
+			frame.setLayout(null);
+			frame.setVisible(true);
+			frame.setResizable(false);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+
+}
