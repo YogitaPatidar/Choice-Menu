@@ -1,0 +1,109 @@
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.*;
+
+class FeedbackForm extends JFrame implements ActionListener{
+	
+		Container container=getContentPane();
+		JLabel name=new JLabel("Username");
+		JLabel contact_no=new JLabel("Contact Number");
+		JLabel comment=new JLabel("Comment");
+		JTextField username=new JTextField();
+		JTextField contact=new JTextField();
+		JTextField comment_=new JTextField();
+		JButton submit=new JButton("Submit");
+		JButton reset=new JButton("Reset");
+		JButton show=new JButton("View Responses");
+		CheckboxGroup grp=new CheckboxGroup();
+		Checkbox c1=new Checkbox("Good",grp,false);
+		Checkbox c2=new Checkbox("Very Good",grp,true);
+		Checkbox c3=new Checkbox("Excellent",grp,false);
+		Label userFeedback=new Label();
+		
+		FeedbackForm(){
+			setLayoutManager();
+			setLocationAndSize();
+			addToContainer();
+			actionEvent();
+		}
+		
+		public void setLayoutManager() {
+			container.setLayout(null);
+		}
+		public void setLocationAndSize() {
+			name.setBounds(50,25,150,20);
+			username.setBounds(50,50,150,30);
+			contact_no.setBounds(50,90,150,20);
+			contact.setBounds(50,115,150,30);
+			comment.setBounds(50,155,150,20);
+			comment_.setBounds(50,180,150,30);
+			c1.setBounds(50,220,100,30);
+			c2.setBounds(150,220,100,30);
+			c3.setBounds(250,220,100,30);
+			submit.setBounds(50,260,80,30);
+			reset.setBounds(130,260,80,30);
+			show.setBounds(50,300,120,30);
+			userFeedback.setBounds(50,340,500,50);
+		}
+		
+		public void addToContainer() {
+			container.add(name);
+			container.add(username);
+			container.add(contact_no);
+			container.add(contact);
+			container.add(comment);
+			container.add(comment_);
+			container.add(c1);
+			container.add(c2);
+			container.add(c3);
+			container.add(submit);
+			container.add(reset);
+			container.add(show);
+			container.add(userFeedback);
+		}
+		
+		public void actionEvent() {
+			submit.addActionListener(this);
+			reset.addActionListener(this);
+			show.addActionListener(this);
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e)  {
+			if(e.getSource()==submit) {
+				String name=username.getText();
+				String phone_num=contact.getText();
+				String comment1=comment_.getText();
+			}	
+			if(e.getSource()==show) {
+				userFeedback.setText("Name: "+username.getText()+"   Contact no: "+contact.getText()+"    Feedback: "+comment_.getText());
+				username.setText("");
+				contact.setText("");
+				comment.setText("");
+			}
+					
+			
+			if(e.getSource()==reset) {
+				username.setText("");
+				contact.setText("");
+				comment.setText("");
+			}
+		}
+	
+}
+
+
+class Feedback_form {
+
+	public static void main(String[] args) {
+		
+		FeedbackForm frame=new FeedbackForm();
+		frame.setSize(500,500);
+		frame.setVisible(true);
+		frame.setLayout(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+
+}
